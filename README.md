@@ -24,11 +24,13 @@ Establishes connection from client to server
 - Identifier:   CONNECT
 - Args:         OK / ERR
 
-Client -> Server: <br />
-    "CONNECT <br />"
-Server -> Client response: <br />
-    "CONNECT OK" <br /> 
-    "CONNECT ERR"  <br />
+```
+Client -> Server: 
+    "CONNECT"
+Server -> Client response: 
+    "CONNECT OK" 
+    "CONNECT ERR" 
+```
 
 ## Ping
 The server will periodically ping the client. If the client does not respond the connection will be terminated
@@ -36,10 +38,12 @@ The server will periodically ping the client. If the client does not respond the
 - Args:         OK / <int:ping>
                 where the <int:ping> is the known ping on the server in ms 
 
-Server -> Client: <br />
-    "PING <int:ping>"  <br />
-Client -> Server: <br />
-    "PING OK" <br />
+```
+Server -> Client:
+    "PING <int:ping>" 
+Client -> Server:
+    "PING OK"
+```
 
 # Game
 ## Start 
@@ -47,21 +51,25 @@ Sends a request to start the game
 - Identifier:   START
 - Args:         OK / Err
 
-Client -> Server: <br />
-    "START" <br />
-Server -> Client:  <br />
-    "START OK"  <br />
-    "START ERR"  <br />
+```
+Client -> Server:
+    "START"
+Server -> Client: 
+    "START OK" 
+    "START ERR" 
+```
 
 ## Controls
 Sends an input from the client to the server
 - Identifier:   ACTION
 - Args:         l / r / d / q / e / s
 
-Client -> Server: <br />
-    "ACTION <char:action>"  <br />
-Sever response:  <br />
-    None <br />
+```
+Client -> Server:
+    "ACTION <char:action>" 
+Sever response: 
+    None
+```
 
 ## Game state
 After every server update the board is send back to the client
@@ -72,12 +80,13 @@ After every server update the board is send back to the client
                 For the board the rows and columns are seperated by ; and , respectively.
                 For the piece queue the items are seperated by a comma.
 
-
-Server -> Client: <br />
-    "STATE MP 0,0, .. ,0; .. ;0,0 .. ,0;_<int:game_over>_<int:score>_0,1,2_<int:held_piece>"  <br />
-    "STATE MP 0,0, .. ,0; .. ;0,0 .. ,0;_<int:game_over>_<int:score>_0,1,2_<int:held_piece>"  <br />
-Client response: <br />
-    None <br />
+```
+Server -> Client:
+    "STATE MP 0,0, .. ,0; .. ;0,0 .. ,0;_<int:game_over>_<int:score>_0,1,2_<int:held_piece>" 
+    "STATE MP 0,0, .. ,0; .. ;0,0 .. ,0;_<int:game_over>_<int:score>_0,1,2_<int:held_piece>" 
+Client response:
+    None
+```
 
 ## Muliplayer Queue
 Send a request for a multiplayer match
@@ -85,19 +94,22 @@ Send a request for a multiplayer match
 - Client args: ENTER / CANCEL
 - Server args: Ok / Err
 
-Client -> Server: <br />
-    "QUEUE ENTER" <br />
-    "QUEUE CANCEL" <br />
-Server -> Client: <br />
-    "QUEUE OK" <br />
-    "QUEUE ERR" <br />
-
-
-Send a confirmation for started multiplayer match <br />
+```
+Client -> Server:
+    "QUEUE ENTER"
+    "QUEUE CANCEL"
 Server -> Client:
+    "QUEUE OK"
+    "QUEUE ERR"
+```
+
+
+## Multiplayer match start
+Send a confirmation for started multiplayer match
 - Identifier: MATCH
 - args: P1/P2
-Server -> Client: <br />
-    "MATCH P1" <br />
-    "MATCH P2" <br />
-
+```
+Server -> Client:
+    "MATCH P1"
+    "MATCH P2"
+```
