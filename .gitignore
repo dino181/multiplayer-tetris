@@ -50,3 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Env file
+*.env
+
+# Other files
+server/high_scores.txt
+server/connection_log.txt
